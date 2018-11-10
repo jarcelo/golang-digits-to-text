@@ -2,20 +2,26 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"bufio"
+	"strconv"
 )
 
 func main() {
-	//fmt.Println(convert_digits_to_words(121))
-	for index := 0; index < 1000; index++ {
-		fmt.Println(convert_digits_to_words(index))
-	}
+	fmt.Println("Enter a number to convert: ")
+	scanner := bufio.NewScanner(os.Stdin)
+	var text string
+	scanner.Scan()
+	text = scanner.Text()
+	number, _  := strconv.Atoi(text)
+	fmt.Println(convert_digits_to_words(number))
 }
 
 func convert_digits_to_words(digit int) string {
 	var one_million = 1000000
 	var one_thousand = 1000
 	var one_hundred = 100
-	
+
 	var millions = digit / one_million
 	var millions_remainder = digit  % one_million
 
