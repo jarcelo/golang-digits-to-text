@@ -5,7 +5,10 @@ import (
 )
 
 func main() {
-	fmt.Println(convert_digits_to_words(1876))
+	//fmt.Println(convert_digits_to_words(121))
+	for index := 0; index < 1000; index++ {
+		fmt.Println(convert_digits_to_words(index))
+	}
 }
 
 func convert_digits_to_words(digit int) string {
@@ -24,7 +27,8 @@ func convert_digits_to_words(digit int) string {
 
 	var millions_part = translate_digit(millions)
 	var thousands_part = translate_digit(thousands)
-	var hundreds_part = translate_twenty_below(hundreds)
+	var hundreds_part = translate_digit(hundreds)
+	var remainder_part = translate_digit(hundreds_remainder)
 
 	if (millions > 0) {
 		millions_part = millions_part + " million "
@@ -36,7 +40,8 @@ func convert_digits_to_words(digit int) string {
 		hundreds_part = hundreds_part + " hundred "
 	} 
 
-	var text_output =  millions_part + thousands_part + hundreds_part + translate_digit(hundreds_remainder)
+	var text_output =  millions_part + thousands_part + hundreds_part + remainder_part
+
 	return text_output
 }
 
