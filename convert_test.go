@@ -14,7 +14,7 @@ func TestConvertDigitsToWords(t *testing.T)  {
 		{1010, "one thousand ten"},
 		{9999, "nine thousand nine hundred ninety nine"},
 		{99999, "ninety nine thousand nine hundred ninety nine"},
-		//{999999, "nine hundred ninety nine thousand nine hundred ninety nine"},  //TODO: This test fails
+		{999999, "nine hundred ninety nine thousand nine hundred ninety nine"},  //TODO: This test fails
 		{1000000, "one million"},
 	}
 

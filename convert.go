@@ -67,7 +67,18 @@ func ConvertDigitsToWords(digit int) string {
 }
 
 func TranslateDigit(digit int) string {
-    if (digit < 20) {
+	var output = ""
+	if digit / 100 > 0 {
+		output += TranslateTwentyBelow(digit/100) + " hundred "
+	}
+	if digit % 100 > 0 {
+		output += TranslateTens (digit % 100)
+	}
+	return output
+}
+
+func TranslateTens(digit int) string {
+	if (digit < 20) {
 		return TranslateTwentyBelow(digit)
 	} else {
         var tens = digit / 10
