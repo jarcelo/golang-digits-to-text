@@ -63,7 +63,7 @@ func ConvertDigitsToWords(digit int) string {
 	if (hundreds > 0) {
 		hundreds_part = hundreds_part + " hundred "
 	} 
-	return millions_part + thousands_part + hundreds_part + remainder_part
+	return strings.TrimSpace(millions_part + thousands_part + hundreds_part + remainder_part)
 }
 
 func TranslateDigit(digit int) string {
