@@ -8,13 +8,19 @@ import (
 )
 
 func main() {
+	var input = get_user_input()
+	fmt.Println(convert_digits_to_words(input))
+}
+
+func get_user_input() int {
 	fmt.Println("Enter a number to convert: ")
 	scanner := bufio.NewScanner(os.Stdin)
 	var text string
 	scanner.Scan()
 	text = scanner.Text()
 	number, _  := strconv.Atoi(text)
-	fmt.Println(convert_digits_to_words(number))
+
+	return number
 }
 
 func convert_digits_to_words(digit int) string {
