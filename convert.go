@@ -78,7 +78,7 @@ func TranslateDigit(digit int) string {
 
 func TranslateTwentyBelow(digit int) string {
 	var number = [20]string {
-		" ", "one", "two", "three", "four", "five",
+		"", "one", "two", "three", "four", "five",
 		"six", "seven", "eight", "nine", "ten", "eleven",
 		"twelve", "thirteen", "fourteen", "fifteen", "sixteen",
 		"seventeen", "eighteen", "nineteen",
@@ -87,7 +87,7 @@ func TranslateTwentyBelow(digit int) string {
 }
 
 func TranslateDivisibleByTen(digit int) string {
-	var number = [10]string {" " , " ","twenty","thirty","forty",
+	var number = [10]string {"" , "","twenty","thirty","forty",
 		"fifty","sixty","seventy","eighty","ninety",
 	}
 	return number[digit]
