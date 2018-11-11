@@ -11,13 +11,13 @@ import (
 func main() {
 	var input string
 	for input != "q" {
-		input = get_user_input()
-		var number = validate_user_input(input)
-		fmt.Println(convert_digits_to_words(number))
+		input = GetUserInput()
+		var number = ValidateUserInput(input)
+		fmt.Println(ConvertDigitsToWords(number))
 	}
 }
 
-func validate_user_input(input string) int {
+func ValidateUserInput(input string) int {
 	number, err  := strconv.Atoi(input)
 	if err != nil && input != "q" {
 		fmt.Println ("Invalid input. Please try again.")
@@ -25,7 +25,7 @@ func validate_user_input(input string) int {
 	return number
 }
 
-func get_user_input() string {
+func GetUserInput() string {
 	fmt.Println("Enter a number to convert. Hit 'q' to exit.")
 	scanner := bufio.NewScanner(os.Stdin)
 	var text string
@@ -35,7 +35,7 @@ func get_user_input() string {
 	return text
 }
 
-func convert_digits_to_words(digit int) string {
+func ConvertDigitsToWords(digit int) string {
 	var one_million = 1000000
 	var one_thousand = 1000
 	var one_hundred = 100
@@ -49,10 +49,10 @@ func convert_digits_to_words(digit int) string {
 	var hundreds = thousands_remainder / one_hundred
 	var hundreds_remainder = thousands_remainder % one_hundred
 
-	var millions_part = translate_digit(millions)
-	var thousands_part = translate_digit(thousands)
-	var hundreds_part = translate_digit(hundreds)
-	var remainder_part = translate_digit(hundreds_remainder)
+	var millions_part = TranslateDigit(millions)
+	var thousands_part = TranslateDigit(thousands)
+	var hundreds_part = TranslateDigit(hundreds)
+	var remainder_part = TranslateDigit(hundreds_remainder)
 
 	if (millions > 0) {
 		millions_part = millions_part + " million "
@@ -63,23 +63,20 @@ func convert_digits_to_words(digit int) string {
 	if (hundreds > 0) {
 		hundreds_part = hundreds_part + " hundred "
 	} 
-
-	//var text_output =  millions_part + thousands_part + hundreds_part + remainder_part
-	//return text_output
 	return millions_part + thousands_part + hundreds_part + remainder_part
 }
 
-func translate_digit(digit int) string {
+func TranslateDigit(digit int) string {
     if (digit < 20) {
-		return translate_twenty_below(digit)
+		return TranslateTwentyBelow(digit)
 	} else {
         var tens = digit / 10
         var tens_remainder = digit % 10
-		return translate_divisible_by_ten(tens) + " " + translate_twenty_below(tens_remainder)
+		return TranslateDivisibleByTen(tens) + " " + TranslateTwentyBelow(tens_remainder)
 	}
 }
 
-func translate_twenty_below(digit int) string {
+func TranslateTwentyBelow(digit int) string {
 	var number = [20]string {
 		" ", "one", "two", "three", "four", "five",
 		"six", "seven", "eight", "nine", "ten", "eleven",
@@ -89,7 +86,7 @@ func translate_twenty_below(digit int) string {
 	return number[digit]
 }
 
-func translate_divisible_by_ten(digit int) string {
+func TranslateDivisibleByTen(digit int) string {
 	var number = [10]string {" " , " ","twenty","thirty","forty",
 		"fifty","sixty","seventy","eighty","ninety",
 	}
