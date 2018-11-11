@@ -5,22 +5,34 @@ import (
 	"os"
 	"bufio"
 	"strconv"
+	"strings"
 )
 
 func main() {
-	var input = get_user_input()
-	fmt.Println(convert_digits_to_words(input))
+	var input string
+	for input != "q" {
+		input = get_user_input()
+		var number = validate_user_input(input)
+		fmt.Println(convert_digits_to_words(number))
+	}
 }
 
-func get_user_input() int {
-	fmt.Println("Enter a number to convert: ")
+func validate_user_input(input string) int {
+	number, err  := strconv.Atoi(input)
+	if err != nil && input != "q" {
+		fmt.Println ("Invalid input. Please try again.")
+	}
+	return number
+}
+
+func get_user_input() string {
+	fmt.Println("Enter a number to convert. Hit 'q' to exit.")
 	scanner := bufio.NewScanner(os.Stdin)
 	var text string
 	scanner.Scan()
 	text = scanner.Text()
-	number, _  := strconv.Atoi(text)
-
-	return number
+	text = strings.TrimSpace(text)
+	return text
 }
 
 func convert_digits_to_words(digit int) string {
@@ -52,9 +64,9 @@ func convert_digits_to_words(digit int) string {
 		hundreds_part = hundreds_part + " hundred "
 	} 
 
-	var text_output =  millions_part + thousands_part + hundreds_part + remainder_part
-
-	return text_output
+	//var text_output =  millions_part + thousands_part + hundreds_part + remainder_part
+	//return text_output
+	return millions_part + thousands_part + hundreds_part + remainder_part
 }
 
 func translate_digit(digit int) string {
